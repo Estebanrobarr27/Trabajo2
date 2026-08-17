@@ -304,6 +304,8 @@ export const seedState = (): AppState => ({
     tasaUSD: 4120,
     tasaEUR: 4485,
     tasaFecha: hoy,
+    colcap: "1.565,20",
+    sp500: "5.942,10",
     tiles: [
       { id: "t-transporte", label: "Transporte", labelEn: "Transport", icon: "bus", color: "pine", url: "", interno: "mandado:Transporte", activo: true },
       { id: "t-apoyo", label: "Apoyo y compañía", labelEn: "Support & company", icon: "heart", color: "marigold", url: "", interno: "mandado:Apoyo y compañía", activo: true },

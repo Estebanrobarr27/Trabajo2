@@ -4,6 +4,7 @@ import type { Tile } from "../types";
 import { fmtCOP, fmtFecha } from "../types";
 import { Icon } from "../components/icons";
 import { Badge, CallBtn, SectionHead, StatCard } from "../components/ui";
+import { TickerIndicadores, PanelIndicadores } from "../components/Indicadores";
 
 const tileColor: Record<string, string> = {
   pine: "bg-pine-700 text-marigold-300",
@@ -51,19 +52,13 @@ export default function Home({ go, anchor }: { go: (target: string) => void; anc
             <h1 className="font-display text-4xl sm:text-5xl font-black mt-1">{t("hola")}, {user?.nombre.split(" ")[0]}</h1>
             <p className="mt-2 text-pine-100/90 max-w-lg">{cfg.eslogan}</p>
           </div>
-          <div className="flex gap-3">
-            {[
-              { ic: "dollar", lbl: "USD → COP", val: fmtCOP(cfg.tasaUSD) },
-              { ic: "euro", lbl: "EUR → COP", val: fmtCOP(cfg.tasaEUR) },
-            ].map((x) => (
-              <div key={x.ic} className="rounded-xl bg-pine-700/70 border border-pine-600 px-5 py-3.5 backdrop-blur-sm">
-                <p className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-marigold-300"><Icon n={x.ic} size={15} /> {x.lbl}</p>
-                <p className="font-display text-2xl font-black">{x.val}</p>
-              </div>
-            ))}
-          </div>
         </div>
-        <p className="relative mt-4 text-xs text-pine-200/80">{t("tasasCambio")} · {fmtFecha(cfg.tasaFecha + "T12:00:00")} · {loc("Configurables por el administrador", "Administrator configurable")}</p>
+      </section>
+
+      {/* ------- Indicadores del mercado (en vivo) ------- */}
+      <section className="anim-rise d1 grid gap-5">
+        <TickerIndicadores />
+        <PanelIndicadores />
       </section>
 
       {/* ------- Cuadros de servicios ------- */}

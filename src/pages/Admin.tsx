@@ -134,6 +134,7 @@ export default function Admin({ mode }: { mode: "encargado" | "super" }) {
     nombreEmpresa: cfg.nombreEmpresa, eslogan: cfg.eslogan, telefonoContacto: cfg.telefonoContacto,
     emailContacto: cfg.emailContacto, ciudad: cfg.ciudad, tasaUSD: String(cfg.tasaUSD),
     tasaEUR: String(cfg.tasaEUR), recordatoriosDias: String(cfg.recordatoriosDias),
+    colcap: cfg.colcap, sp500: cfg.sp500,
   });
 
   const kpi = useMemo(() => {
@@ -165,6 +166,7 @@ export default function Admin({ mode }: { mode: "encargado" | "super" }) {
       ...c, nombreEmpresa: gen.nombreEmpresa, eslogan: gen.eslogan, telefonoContacto: gen.telefonoContacto,
       emailContacto: gen.emailContacto, ciudad: gen.ciudad, tasaUSD: Number(gen.tasaUSD) || c.tasaUSD,
       tasaEUR: Number(gen.tasaEUR) || c.tasaEUR, recordatoriosDias: Number(gen.recordatoriosDias) || 3,
+      colcap: gen.colcap.trim() || c.colcap, sp500: gen.sp500.trim() || c.sp500,
       tasaFecha: new Date().toISOString().slice(0, 10),
     }), "Parámetros generales actualizados");
     toast(t("guardar") + " ✓");
@@ -391,6 +393,8 @@ export default function Admin({ mode }: { mode: "encargado" | "super" }) {
                   <Field label={t("correo")}><Input value={gen.emailContacto} onChange={(e) => setGen({ ...gen, emailContacto: e.target.value })} /></Field>
                   <Field label={t("tasaUSD")}><Input type="number" value={gen.tasaUSD} onChange={(e) => setGen({ ...gen, tasaUSD: e.target.value })} /></Field>
                   <Field label={t("tasaEUR")}><Input type="number" value={gen.tasaEUR} onChange={(e) => setGen({ ...gen, tasaEUR: e.target.value })} /></Field>
+                  <Field label={t("colcapLbl")} hint={t("tasasReferencia")}><Input value={gen.colcap} onChange={(e) => setGen({ ...gen, colcap: e.target.value })} placeholder="1.565,20" /></Field>
+                  <Field label={t("sp500Lbl")}><Input value={gen.sp500} onChange={(e) => setGen({ ...gen, sp500: e.target.value })} placeholder="5.942,10" /></Field>
                   <Field label="Días de recordatorio de citas"><Input type="number" value={gen.recordatoriosDias} onChange={(e) => setGen({ ...gen, recordatoriosDias: e.target.value })} /></Field>
                   <div className="sm:col-span-2 flex justify-end"><Btn icon="check" size="lg" onClick={guardarGeneral}>{t("guardar")}</Btn></div>
                 </div>

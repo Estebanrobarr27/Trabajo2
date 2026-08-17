@@ -117,6 +117,12 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track { animation: ticker 38s linear infinite; will-change: transform; }
+.ticker-wrap:hover .ticker-track { animation-play-state: paused; }
 @keyframes countPulse {
   0% { transform: scale(0.7); opacity: 0; }
   30% { transform: scale(1.08); opacity: 1; }

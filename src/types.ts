@@ -236,6 +236,8 @@ export interface PlatformConfig {
   tasaUSD: number;
   tasaEUR: number;
   tasaFecha: string;
+  colcap: string;
+  sp500: string;
   tiles: Tile[];
   tarifas: Tarifa[];
   enlaces: EnlaceInteres[];
