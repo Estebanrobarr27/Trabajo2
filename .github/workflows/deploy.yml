@@ -1,7 +1,8 @@
 # ============================================================
 # Juventudes — Despliegue automático en GitHub Pages
 # Cada push a "main" compila la app y publica la carpeta dist.
-# Sitio final: https://estebanrobarr27.github.io/Trabajo-de-don-Oscar/
+# Sitio final: https://TU-USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
+# (funciona con cualquier nombre de repositorio, no hay que configurar nada)
 # ============================================================
 name: Deploy to GitHub Pages
 

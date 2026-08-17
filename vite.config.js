@@ -3,9 +3,9 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  // Base absoluta del sitio en GitHub Pages (subcarpeta del repositorio).
-  // Si cambias el nombre del repositorio, actualiza esta ruta también.
-  base: "/Trabajo-de-don-Oscar/",
+  // Rutas relativas: la aplicación funciona en GitHub Pages con CUALQUIER
+  // nombre de repositorio (también en dominio propio o carpeta local).
+  base: "./",
   plugins: [react(), tailwindcss()],
   server: {
     host: "0.0.0.0",
