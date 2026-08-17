@@ -1,0 +1,35 @@
+===============================================
+  JUVENTUDES — Cómo abrir la aplicación
+===============================================
+
+1. Busca el archivo "index.html" que está DENTRO
+   de la carpeta "dist" (no el de la raíz).
+
+2. Dale doble clic. Se abrirá en tu navegador
+   (recomendado: Google Chrome o Microsoft Edge).
+
+IMPORTANTE:
+- La carpeta "assets" debe quedarse SIEMPRE al
+  lado de index.html. Si mueves solo el archivo
+  index.html a otro lugar, la aplicación se verá
+  en blanco. Mueve o copia la carpeta completa.
+- La primera vez, abre con conexión a internet
+  para cargar las letras e imágenes.
+
+¿SIGUE VIÉNDOSE EN BLANCO?
+Abre la aplicación con un mini servidor local:
+
+  Opción A (si tienes Python instalado):
+    Abre una terminal en la carpeta "dist" y escribe:
+       python -m http.server 8080
+    Luego entra a:  http://localhost:8080
+
+  Opción B (si tienes Node.js instalado):
+    Abre una terminal en la carpeta "dist" y escribe:
+       npx serve .
+    Luego entra a la dirección que aparezca.
+
+Los datos que registres (usuarios, mandados,
+configuración) se guardan en tu propio navegador.
+
+Soporte: hola@juventudes.co

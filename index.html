@@ -6,6 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Juventudes — Asistencia, mandados y acompañamiento para personas mayores en Colombia. Solicita mandados, gestiona citas médicas y activa el botón de pánico cuando lo necesites." />
     <title>Juventudes — Asistencia y mandados para personas mayores</title>
+    <script>
+      /* Juventudes · modo apertura local (doble clic).
+         Solo actúa cuando el archivo se abre desde el disco (file:);
+         cuando la app se sirve por internet no hace nada. */
+      (function () {
+        try {
+          if (location.protocol !== "file:") return;
+          var dir = location.href.replace(/[^/]*$/, "");
+          var reparar = function () {
+            document.querySelectorAll('link[rel="modulepreload"]').forEach(function (l) { l.remove(); });
+            document.querySelectorAll('link[rel="stylesheet"][href^="/"]').forEach(function (l) {
+              l.setAttribute("href", dir + l.getAttribute("href").replace(/^\//, ""));
+            });
+            document.querySelectorAll('script[type="module"][src^="/assets/"]').forEach(function (s) {
+              var nuevo = document.createElement("script");
+              nuevo.src = dir + s.getAttribute("src").replace(/^\//, "");
+              s.parentNode.replaceChild(nuevo, s);
+            });
+          };
+          if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", reparar);
+          else reparar();
+        } catch (e) { /* sin conexión local no se interrumpe la carga normal */ }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600;1,9..144,900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
