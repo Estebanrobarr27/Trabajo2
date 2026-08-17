@@ -91,7 +91,7 @@ export function useIndicadores() {
   }, [refrescar]);
 
   const pct = (vivo: number, ref: number) => (ref > 0 ? redondear(((vivo - ref) / ref) * 100) : null);
-  const aNumero = (s: string) => Number(s.replace(/\./g, "").replace(",", ".")) || 0;
+  const aNumero = (s: string | undefined) => Number(String(s ?? "").replace(/\./g, "").replace(",", ".")) || 0;
 
   const lista: Indicador[] = [
     {

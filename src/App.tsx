@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { Component, useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import { AppProvider, useApp } from "./store";
 import type { Idioma, Ubicacion } from "./types";
 import { ahora, fmtFecha, fmtHora } from "./types";
@@ -324,11 +325,42 @@ function Shell() {
   );
 }
 
+/* ---------- Red de seguridad: nunca una pantalla en blanco ---------- */
+class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | null }> {
+  state = { error: null as Error | null };
+  static getDerivedStateFromError(error: Error) { return { error }; }
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="flex min-h-screen flex-col items-center justify-center gap-5 bg-paper px-6 text-center">
+          <span className="flex h-20 w-20 items-center justify-center rounded-full bg-coral-100 text-coral-700">
+            <Icon n="alert" size={40} />
+          </span>
+          <h1 className="font-display text-3xl font-black text-pine-900">Algo salió mal</h1>
+          <p className="max-w-md text-muted font-bold">
+            La aplicación encontró un error inesperado. Recarga la página para continuar;
+            tu información guardada está segura.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="inline-flex items-center gap-2 rounded-full bg-pine-700 px-8 py-4 text-lg font-bold text-white transition-transform hover:scale-105 active:scale-95"
+          >
+            <Icon n="refresh" size={22} /> Recargar aplicación
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 export default function App() {
   return (
-    <AppProvider>
-      <Shell />
-      <Toasts />
-    </AppProvider>
+    <ErrorBoundary>
+      <AppProvider>
+        <Shell />
+        <Toasts />
+      </AppProvider>
+    </ErrorBoundary>
   );
 }

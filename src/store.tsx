@@ -19,16 +19,22 @@ import { translate } from "./i18n";
 const KEY = "juventudes_app_v1";
 
 function loadState(): AppState {
+  const seed = seedState();
   try {
     const raw = localStorage.getItem(KEY);
     if (raw) {
       const s = JSON.parse(raw) as AppState;
-      if (s && s.version === 1 && Array.isArray(s.usuarios)) return s;
+      if (s && s.version === 1 && Array.isArray(s.usuarios)) {
+        // El estado guardado se combina con la semilla: así los campos
+        // agregados en versiones nuevas (colcap, sp500, etc.) siempre
+        // existen aunque el navegador tenga datos de una versión anterior.
+        return { ...seed, ...s, config: { ...seed.config, ...(s.config ?? {}) } };
+      }
     }
   } catch {
     /* estado corrupto: se regenera la semilla */
   }
-  return seedState();
+  return seed;
 }
 
 const pushNotif = (s: AppState, para: string[], titulo: string, cuerpo: string, tipo: Notif["tipo"]): AppState => ({
