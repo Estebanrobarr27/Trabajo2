@@ -348,6 +348,14 @@ export default function Landing() {
               <p className="mt-4 text-center text-xs text-muted">
                 {t("correoLbl")}: cliente@juventudes.co · {t("contrasenaLbl")}: cliente123
               </p>
+              <p className="mt-3 text-center">
+                <button
+                  onClick={() => { try { localStorage.removeItem("juventudes_app_v1"); } catch { /* noop */ } window.location.reload(); }}
+                  className="text-sm font-bold text-muted underline decoration-2 underline-offset-4 transition-colors hover:text-coral-700"
+                >
+                  ¿Problemas al entrar? Restablecer datos de la aplicación
+                </button>
+              </p>
             </div>
           )}
         </div>

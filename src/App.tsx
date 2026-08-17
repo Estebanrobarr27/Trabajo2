@@ -338,15 +338,29 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
           </span>
           <h1 className="font-display text-3xl font-black text-pine-900">Algo salió mal</h1>
           <p className="max-w-md text-muted font-bold">
-            La aplicación encontró un error inesperado. Recarga la página para continuar;
-            tu información guardada está segura.
+            La aplicación encontró un error inesperado. Puedes restablecer los datos guardados
+            o recargar; tu cuenta no se pierde.
           </p>
-          <button
-            onClick={() => window.location.reload()}
-            className="inline-flex items-center gap-2 rounded-full bg-pine-700 px-8 py-4 text-lg font-bold text-white transition-transform hover:scale-105 active:scale-95"
-          >
-            <Icon n="refresh" size={22} /> Recargar aplicación
-          </button>
+          <details className="max-w-xl text-left">
+            <summary className="cursor-pointer font-bold text-pine-700 underline decoration-2 underline-offset-4">Ver el detalle técnico del error</summary>
+            <pre className="mt-2 max-h-48 overflow-auto whitespace-pre-wrap rounded-xl bg-ink p-4 text-xs text-paper">
+              {this.state.error.message}{"\n\n"}{this.state.error.stack}
+            </pre>
+          </details>
+          <div className="flex flex-wrap justify-center gap-3">
+            <button
+              onClick={() => { try { localStorage.removeItem("juventudes_app_v1"); } catch { /* noop */ } window.location.reload(); }}
+              className="inline-flex items-center gap-2 rounded-full bg-coral-600 px-8 py-4 text-lg font-bold text-white transition-transform hover:scale-105 active:scale-95"
+            >
+              <Icon n="refresh" size={22} /> Restablecer datos y entrar
+            </button>
+            <button
+              onClick={() => window.location.reload()}
+              className="inline-flex items-center gap-2 rounded-full bg-pine-700 px-8 py-4 text-lg font-bold text-white transition-transform hover:scale-105 active:scale-95"
+            >
+              <Icon n="refresh" size={22} /> Solo recargar
+            </button>
+          </div>
         </div>
       );
     }
@@ -354,13 +368,39 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
   }
 }
 
+/* ---------- Detector de errores: muestra el mensaje exacto en pantalla ---------- */
+function ErrorBanner() {
+  const [msg, setMsg] = useState<string | null>(null);
+  useEffect(() => {
+    const onErr = (e: ErrorEvent) => setMsg(e.message || "Error desconocido");
+    const onRej = (e: PromiseRejectionEvent) => setMsg(String((e.reason as Error)?.message ?? e.reason ?? "Error"));
+    window.addEventListener("error", onErr);
+    window.addEventListener("unhandledrejection", onRej);
+    return () => { window.removeEventListener("error", onErr); window.removeEventListener("unhandledrejection", onRej); };
+  }, []);
+  if (!msg) return null;
+  return (
+    <div className="fixed inset-x-0 top-0 z-[99] bg-coral-700 px-4 py-3 text-white shadow-lift">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
+        <p className="text-sm font-bold"><span className="font-black uppercase tracking-wider">Error detectado:</span> {msg}</p>
+        <button onClick={() => setMsg(null)} className="shrink-0 rounded-full bg-white/15 px-3 py-1 text-sm font-black hover:bg-white/25" aria-label="Cerrar aviso">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   return (
-    <ErrorBoundary>
-      <AppProvider>
-        <Shell />
-        <Toasts />
-      </AppProvider>
-    </ErrorBoundary>
+    <>
+      <ErrorBoundary>
+        <AppProvider>
+          <Shell />
+          <Toasts />
+        </AppProvider>
+      </ErrorBoundary>
+      <ErrorBanner />
+    </>
   );
 }
