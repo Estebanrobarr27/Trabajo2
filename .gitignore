@@ -1,5 +1,17 @@
+# Dependencias
 node_modules/
-.next/
+
+# Resultado del build (lo genera GitHub Actions automáticamente)
 dist/
+
+# Logs y archivos de sistema
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Entornos
+.env
+.env.local
+.next/
 build/
 *.log

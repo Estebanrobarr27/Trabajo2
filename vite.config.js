@@ -3,9 +3,9 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  // Rutas relativas: permite publicar en GitHub Pages (subcarpeta),
-  // en dominio propio o servir la carpeta dist desde cualquier lugar.
-  base: "./",
+  // Base absoluta del sitio en GitHub Pages (subcarpeta del repositorio).
+  // Si cambias el nombre del repositorio, actualiza esta ruta también.
+  base: "/Trabajo-de-don-Oscar/",
   plugins: [react(), tailwindcss()],
   server: {
     host: "0.0.0.0",
