@@ -1,35 +1,71 @@
-===============================================
-  JUVENTUDES — Cómo abrir la aplicación
-===============================================
+============================================================
+ JUVENTUDES — Cómo publicar tu aplicación (GitHub Pages)
+============================================================
 
-1. Busca el archivo "index.html" que está DENTRO
-   de la carpeta "dist" (no el de la raíz).
+TU SITIO YA ESTÁ LISTO PARA PUBLICARSE.
+Todo lo que necesitas está en la carpeta "dist" de tu descarga:
 
-2. Dale doble clic. Se abrirá en tu navegador
-   (recomendado: Google Chrome o Microsoft Edge).
+    dist/
+      ├── index.html      <-- la aplicación
+      ├── assets/         <-- código, estilos e iconos
+      └── LEEME.txt       <-- estas instrucciones
 
-IMPORTANTE:
-- La carpeta "assets" debe quedarse SIEMPRE al
-  lado de index.html. Si mueves solo el archivo
-  index.html a otro lugar, la aplicación se verá
-  en blanco. Mueve o copia la carpeta completa.
-- La primera vez, abre con conexión a internet
-  para cargar las letras e imágenes.
+------------------------------------------------------------
+ OPCIÓN A — Publicar en GitHub Pages (GRATIS, recomendado)
+------------------------------------------------------------
 
-¿SIGUE VIÉNDOSE EN BLANCO?
-Abre la aplicación con un mini servidor local:
+1) Crea una cuenta en https://github.com (si aún no tienes una).
 
-  Opción A (si tienes Python instalado):
-    Abre una terminal en la carpeta "dist" y escribe:
-       python -m http.server 8080
-    Luego entra a:  http://localhost:8080
+2) Crea un nuevo repositorio:
+   - Botón verde "New repository" (Nuevo repositorio).
+   - Ponle un nombre, por ejemplo: juventudes
+   - Déjalo PÚBLICO y presiona "Create repository".
 
-  Opción B (si tienes Node.js instalado):
-    Abre una terminal en la carpeta "dist" y escribe:
-       npx serve .
-    Luego entra a la dirección que aparezca.
+3) Sube el contenido de la carpeta "dist" (NO la carpeta dist
+   en sí, sino lo que hay DENTRO de ella):
+   - Entra al repositorio que acabas de crear.
+   - Haz clic en "uploading an existing file".
+   - Arrastra: index.html, la carpeta assets y este LEEME.txt
+     (el LEEME es opcional).
+   - Abajo, presiona "Commit changes".
 
-Los datos que registres (usuarios, mandados,
-configuración) se guardan en tu propio navegador.
+4) Activa GitHub Pages:
+   - En tu repositorio, entra a Settings (Configuración).
+   - En el menú izquierdo, haz clic en "Pages".
+   - En "Branch" elige "main" y carpeta "/ (root)".
+   - Presiona "Save".
 
-Soporte: hola@juventudes.co
+5) ¡Listo! Espera 1 o 2 minutos y tu aplicación estará en:
+
+       https://TU-USUARIO.github.io/juventudes/
+
+   Comparte ese enlace con quien quieras: funciona en
+   computador y celular, sin instalar nada.
+
+------------------------------------------------------------
+ OPCIÓN B — Ver la aplicación en tu computador (local)
+------------------------------------------------------------
+
+Por seguridad, los navegadores modernos no permiten abrir
+aplicaciones como esta con doble clic (usan tecnología de
+módulos web). Para verla en tu PC sin internet:
+
+1) Abre una terminal en la carpeta "dist".
+2) Escribe UNO de estos comandos:
+
+     python -m http.server 8000
+     npx serve .
+
+3) Abre tu navegador en:  http://localhost:8000
+
+------------------------------------------------------------
+ NOTAS IMPORTANTES
+------------------------------------------------------------
+
+- La aplicación guarda los datos en cada navegador que la
+  visita (cada persona ve su propia información).
+- Si haces cambios y vuelves a descargar, solo repite el
+  paso 3: sube los archivos nuevos y GitHub actualizará
+  tu sitio solo.
+- Para un dominio propio (www.juventudes.co), en Settings
+  > Pages usa "Custom domain".

@@ -5,31 +5,8 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23175641'/%3E%3Ccircle cx='32' cy='38' r='13' fill='%23f2b42f'/%3E%3Cg stroke='%23f2b42f' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M32 10v8M14 20l6 6M50 20l-6 6M8 38h8M48 38h8'/%3E%3C/g%3E%3C/svg%3E" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Juventudes — Asistencia, mandados y acompañamiento para personas mayores en Colombia. Solicita mandados, gestiona citas médicas y activa el botón de pánico cuando lo necesites." />
+    <meta name="theme-color" content="#175641" />
     <title>Juventudes — Asistencia y mandados para personas mayores</title>
-    <script>
-      /* Juventudes · modo apertura local (doble clic).
-         Solo actúa cuando el archivo se abre desde el disco (file:);
-         cuando la app se sirve por internet no hace nada. */
-      (function () {
-        try {
-          if (location.protocol !== "file:") return;
-          var dir = location.href.replace(/[^/]*$/, "");
-          var reparar = function () {
-            document.querySelectorAll('link[rel="modulepreload"]').forEach(function (l) { l.remove(); });
-            document.querySelectorAll('link[rel="stylesheet"][href^="/"]').forEach(function (l) {
-              l.setAttribute("href", dir + l.getAttribute("href").replace(/^\//, ""));
-            });
-            document.querySelectorAll('script[type="module"][src^="/assets/"]').forEach(function (s) {
-              var nuevo = document.createElement("script");
-              nuevo.src = dir + s.getAttribute("src").replace(/^\//, "");
-              s.parentNode.replaceChild(nuevo, s);
-            });
-          };
-          if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", reparar);
-          else reparar();
-        } catch (e) { /* sin conexión local no se interrumpe la carga normal */ }
-      })();
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600;1,9..144,900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
