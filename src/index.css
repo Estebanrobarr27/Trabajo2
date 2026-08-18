@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Atkinson Hyperlegible", Verdana, sans-serif;
+
+  --color-paper: #f2f3ec;
+  --color-card: #ffffff;
+  --color-ink: #1b2420;
+  --color-muted: #5c675f;
+  --color-line: #dfe3d5;
+
+  --color-pine-50: #eef6f1;
+  --color-pine-100: #dcece2;
+  --color-pine-200: #b9d8c6;
+  --color-pine-300: #8fbfa5;
+  --color-pine-400: #5b9d7e;
+  --color-pine-500: #357f61;
+  --color-pine-600: #22684d;
+  --color-pine-700: #175641;
+  --color-pine-800: #103f30;
+  --color-pine-900: #0b2e23;
+
+  --color-marigold-50: #fff8e8;
+  --color-marigold-100: #fdeec6;
+  --color-marigold-200: #fadf94;
+  --color-marigold-300: #f7cb5e;
+  --color-marigold-400: #f2b42f;
+  --color-marigold-500: #e89d14;
+  --color-marigold-600: #c67f0c;
+  --color-marigold-700: #9c620b;
+  --color-marigold-800: #74480d;
+  --color-marigold-900: #52330c;
+
+  --color-coral-50: #fdeeee;
+  --color-coral-100: #fbdcdc;
+  --color-coral-200: #f6b4b2;
+  --color-coral-300: #ee8583;
+  --color-coral-400: #e65c58;
+  --color-coral-500: #dc3d38;
+  --color-coral-600: #b92c28;
+  --color-coral-700: #962421;
+  --color-coral-800: #6f1b19;
+  --color-coral-900: #4d1312;
+
+  --color-co-yellow: #fcd116;
+  --color-co-blue: #003893;
+  --color-co-red: #ce1126;
+
+  --shadow-lift: 0 10px 30px -12px rgba(16, 63, 48, 0.25);
+}
+
+@layer base {
+  html {
+    font-size: 17px;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+    background-image: radial-gradient(rgba(23, 86, 65, 0.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  ::selection {
+    background: var(--color-marigold-200);
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-marigold-400);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-card rounded-xl border border-line shadow-[0_1px_2px_rgba(16,63,48,0.06)] transition-shadow duration-300;
+  }
+  .card-hover:hover {
+    @apply shadow-lift;
+  }
+  .tri-stripe {
+    background: linear-gradient(to right, var(--color-co-yellow) 0 50%, var(--color-co-blue) 50% 75%, var(--color-co-red) 75% 100%);
+  }
+  .lbl {
+    @apply block mb-1.5 text-sm font-bold tracking-wide text-pine-900;
+  }
+  .inp {
+    @apply w-full rounded-xl border-2 border-line bg-white px-4 py-3 text-base text-ink placeholder:text-muted/60 outline-none transition-all focus:border-pine-600 focus:ring-4 focus:ring-pine-600/15;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-bold;
+  }
+  .th {
+    @apply px-3 py-2.5 text-left text-xs font-bold uppercase tracking-wider text-pine-800/70;
+  }
+  .td {
+    @apply px-3 py-3 align-middle;
+  }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes popin {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes ringPulse {
+  0% { box-shadow: 0 0 0 0 rgba(220, 61, 56, 0.5); }
+  70% { box-shadow: 0 0 0 22px rgba(220, 61, 56, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 61, 56, 0); }
+}
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track { animation: ticker 38s linear infinite; will-change: transform; }
+.ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+@keyframes countPulse {
+  0% { transform: scale(0.7); opacity: 0; }
+  30% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.anim-rise { animation: rise 0.55s cubic-bezier(0.22, 0.9, 0.3, 1) both; }
+.anim-pop { animation: popin 0.35s cubic-bezier(0.22, 0.9, 0.3, 1) both; }
+.panic-pulse { animation: ringPulse 1.8s ease-out infinite; }
+.blink-dot { animation: blinkDot 1.4s ease-in-out infinite; }
+.floaty { animation: floaty 5s ease-in-out infinite; }
+.count-pulse { animation: countPulse 0.95s ease-out both; }
+.d1 { animation-delay: 0.06s; }
+.d2 { animation-delay: 0.12s; }
+.d3 { animation-delay: 0.18s; }
+.d4 { animation-delay: 0.24s; }
+.d5 { animation-delay: 0.3s; }
+.d6 { animation-delay: 0.36s; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-pine-200); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-pine-300); }

@@ -1,0 +1,71 @@
+============================================================
+ JUVENTUDES — Cómo publicar tu aplicación (GitHub Pages)
+============================================================
+
+TU SITIO YA ESTÁ LISTO PARA PUBLICARSE.
+Todo lo que necesitas está en la carpeta "dist" de tu descarga:
+
+    dist/
+      ├── index.html      <-- la aplicación
+      ├── assets/         <-- código, estilos e iconos
+      └── LEEME.txt       <-- estas instrucciones
+
+------------------------------------------------------------
+ OPCIÓN A — Publicar en GitHub Pages (GRATIS, recomendado)
+------------------------------------------------------------
+
+1) Crea una cuenta en https://github.com (si aún no tienes una).
+
+2) Crea un nuevo repositorio:
+   - Botón verde "New repository" (Nuevo repositorio).
+   - Ponle un nombre, por ejemplo: juventudes
+   - Déjalo PÚBLICO y presiona "Create repository".
+
+3) Sube el contenido de la carpeta "dist" (NO la carpeta dist
+   en sí, sino lo que hay DENTRO de ella):
+   - Entra al repositorio que acabas de crear.
+   - Haz clic en "uploading an existing file".
+   - Arrastra: index.html, la carpeta assets y este LEEME.txt
+     (el LEEME es opcional).
+   - Abajo, presiona "Commit changes".
+
+4) Activa GitHub Pages:
+   - En tu repositorio, entra a Settings (Configuración).
+   - En el menú izquierdo, haz clic en "Pages".
+   - En "Branch" elige "main" y carpeta "/ (root)".
+   - Presiona "Save".
+
+5) ¡Listo! Espera 1 o 2 minutos y tu aplicación estará en:
+
+       https://TU-USUARIO.github.io/juventudes/
+
+   Comparte ese enlace con quien quieras: funciona en
+   computador y celular, sin instalar nada.
+
+------------------------------------------------------------
+ OPCIÓN B — Ver la aplicación en tu computador (local)
+------------------------------------------------------------
+
+Por seguridad, los navegadores modernos no permiten abrir
+aplicaciones como esta con doble clic (usan tecnología de
+módulos web). Para verla en tu PC sin internet:
+
+1) Abre una terminal en la carpeta "dist".
+2) Escribe UNO de estos comandos:
+
+     python -m http.server 8000
+     npx serve .
+
+3) Abre tu navegador en:  http://localhost:8000
+
+------------------------------------------------------------
+ NOTAS IMPORTANTES
+------------------------------------------------------------
+
+- La aplicación guarda los datos en cada navegador que la
+  visita (cada persona ve su propia información).
+- Si haces cambios y vuelves a descargar, solo repite el
+  paso 3: sube los archivos nuevos y GitHub actualizará
+  tu sitio solo.
+- Para un dominio propio (www.juventudes.co), en Settings
+  > Pages usa "Custom domain".
