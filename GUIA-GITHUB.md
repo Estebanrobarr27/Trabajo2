@@ -1,134 +1,88 @@
-# 🚀 Cómo subir Juventudes a GitHub (paso a paso)
+# 🚀 Cómo publicar Juventudes en GitHub Pages (paso a paso)
 
-Esta guía no requiere saber programar. Sigue los pasos en orden.
+Esta guía no requiere saber programar. El método recomendado es el de la
+carpeta **`docs/`**: no depende de GitHub Actions, de carpetas ocultas,
+ni del nombre del repositorio.
 
 ---
 
-## ⚠️ Antes de empezar: el nombre del repositorio
+## ⭐ Método recomendado: carpeta `docs/`
 
-El archivo `vite.config.js` contiene esta línea:
+La aplicación ya viene **compilada** dentro de la carpeta `docs/` de este
+proyecto (archivo `docs/index.html`, todo incluido).
 
-```js
-base: "/Trabajo-de-don-Oscar/"
+### 1) Crea el repositorio (si aún no lo tienes)
+- Entra a github.com → botón verde **New repository**.
+- Ponle el nombre que quieras (el que sea).
+- Déjalo **público**. No marques nada más.
+- Presiona **Create repository**.
+
+### 2) Sube los archivos
+- Entra al repositorio nuevo → **"uploading an existing file"**.
+- Arrastra **todas las carpetas y archivos visibles** de este proyecto,
+  con especial atención a la carpeta **`docs`** (es la que lleva la app).
+- Presiona **Commit changes**.
+
+> No necesitas `node_modules` ni `dist`. La carpeta `docs` es la clave.
+
+### 3) Activa GitHub Pages
+- En el repositorio: **Settings** (Configuración) → **Pages** (menú izquierdo).
+- En **Source** elige **"Deploy from a branch"** (Implementar desde una rama).
+- En **Branch** elige **main** y en la carpeta elige **/docs**.
+- Presiona **Save**.
+
+### 4) ¡Listo!
+Espera 1 o 2 minutos y abre:
+
+```
+https://TU-USUARIO.github.io/NOMBRE-DEL-REPOSITORIO/
 ```
 
-**El nombre del repositorio que crees debe ser exactamente ese.**
-Si le pones otro nombre (por ejemplo `Aplicacion`), la página quedará en
-blanco. Dos opciones:
-
-- **Opción A (recomendada):** crea el repositorio con el nombre
-  `Trabajo-de-don-Oscar`. No tocas nada más.
-- **Opción B:** si quieres otro nombre, pide que te ajusten el `base`
-  en `vite.config.js` antes de subir (es un cambio de una línea).
+Ejemplo: si tu usuario es `estebanrobarr27` y el repo se llama `Aplicacion`:
+**https://estebanrobarr27.github.io/Aplicacion/**
 
 ---
 
-## MÉTODO 1 — Desde la página web de GitHub (el más fácil)
+## 🔄 Para actualizar el sitio después
 
-No necesitas instalar nada.
-
-### Paso 1 · Descarga el proyecto
-Descarga el proyecto completo desde tu entorno de trabajo y
-descomprímelo en una carpeta, por ejemplo en el Escritorio.
-
-### Paso 2 · Limpia la carpeta
-Dentro de la carpeta descargada, **elimina** estas dos carpetas
-(el sitio las genera solo, no se deben subir):
-
-- `node_modules`
-- `dist`
-
-### Paso 3 · Muestra los archivos ocultos
-El proyecto tiene una carpeta llamada `.github` que es indispensable
-para el despliegue automático. Por defecto los sistemas la ocultan:
-
-- **Windows:** en el Explorador → pestaña *Vista* → marca
-  *Elementos ocultos*.
-- **Mac:** en el Finder presiona `Cmd + Shift + .` (punto).
-
-### Paso 4 · Crea el repositorio nuevo
-1. Entra a https://github.com e inicia sesión.
-2. Haz clic en el botón verde **New repository** (arriba a la derecha,
-   en el símbolo **+**).
-3. En *Repository name* escribe: `Trabajo-de-don-Oscar`
-4. Déjalo en **Public**.
-5. **NO** marques "Add a README file".
-6. Presiona **Create repository**.
-
-### Paso 5 · Sube los archivos
-1. Entra al repositorio que acabas de crear.
-2. Haz clic en el enlace **"uploading an existing file"**.
-3. Abre el Explorador/Finder en la carpeta del proyecto (ya limpia)
-   y **arrastra TODO su contenido** a la zona de carga de GitHub:
-   las carpetas `src`, `public`, `.github` y los archivos sueltos
-   (`index.html`, `package.json`, `vite.config.js`, etc.).
-4. Espera a que carguen y abajo presiona **Commit changes**.
-
-### Paso 6 · Activa GitHub Pages (solo la primera vez)
-1. Dentro del repositorio, haz clic en **Settings**
-   (el engranaje, arriba).
-2. En el menú izquierdo, haz clic en **Pages**.
-3. En **Source**, abre el menú y elige **GitHub Actions**.
-4. Listo — se guarda solo.
-
-### Paso 7 · Verifica que tu página esté en línea
-1. Haz clic en la pestaña **Actions** del repositorio.
-2. Verás un proceso llamado *"Deploy to GitHub Pages"* ejecutándose
-   (círculo amarillo) y luego con un check verde ✔.
-3. Abre tu sitio en:
-
-   ```
-   https://TU-USUARIO.github.io/Trabajo-de-don-Oscar/
-   ```
-
-   (reemplaza `TU-USUARIO` por tu nombre de usuario de GitHub).
-
-🎉 **¡Listo!** A partir de ahora, cada vez que subas cambios al
-repositorio, la página se actualizará sola en 1 o 2 minutos.
+Cada vez que descargues una versión nueva del proyecto:
+1. Entra al repositorio → carpeta `docs` → archivo `index.html`.
+2. Ícono del lápiz ✏️ → borra todo → pega el contenido del nuevo
+   `docs/index.html` → **Commit changes**.
+3. El sitio se actualiza solo en 1–2 minutos.
 
 ---
 
-## MÉTODO 2 — Con la terminal (si prefieres Git)
+## 🧪 Para probar en tu computador (sin publicar)
 
-Instala Git desde https://git-scm.com, abre una terminal dentro de la
-carpeta del proyecto (ya sin `node_modules` ni `dist`) y ejecuta:
-
-```bash
-git init
-git branch -M main
-git add .
-git commit -m "Juventudes: aplicación completa"
-git remote add origin https://github.com/TU-USUARIO/Trabajo-de-don-Oscar.git
-git push -u origin main
-```
-
-Cuando te pida credenciales, usa tu usuario de GitHub y un
-*Personal Access Token* (no tu contraseña). Para crear el token:
-GitHub → Settings → Developer settings → Personal access tokens →
-Generate new token (marca el permiso **repo**).
-
-Después sigue el **Paso 6** del Método 1 (activar GitHub Actions
-en Settings → Pages).
+Abre la carpeta `dist` y haz doble clic en `index.html`.
+(También puedes usar `docs/index.html`, es el mismo archivo.)
 
 ---
 
-## ❓ Problemas comunes
+## 🤖 Método alternativo: GitHub Actions (automático)
 
-| Problema | Solución |
+El proyecto incluye `.github/workflows/deploy.yml`, que compila y publica
+solo con cada cambio. **Solo funciona si esa carpeta oculta llega al
+repositorio** — al subir archivos arrastrando desde el explorador, las
+carpetas ocultas (las que empiezan con punto) normalmente NO se incluyen.
+
+Para usarlo:
+1. Sube el proyecto con **Git** o **GitHub Desktop** (así sí se incluye `.github`).
+2. **Settings → Pages → Source: "GitHub Actions"**.
+3. Cada push a `main` republicará el sitio automáticamente.
+
+Si el sitio sigue en blanco con este método, casi siempre es porque
+`.github/workflows/deploy.yml` no está visible en la lista de archivos
+del repositorio. Verifícalo allí; si no aparece, usa el método `docs/`.
+
+---
+
+## ❓ Solución de problemas
+
+| Síntoma | Causa y solución |
 |---|---|
-| La página se ve **en blanco** | El nombre del repositorio no coincide con el `base` de `vite.config.js`. Renombra el repositorio o pide ajustar el archivo. |
-| Error **404** al cargar | En Settings → Pages, *Source* debe decir **GitHub Actions**, no "Deploy from a branch". |
-| Actions no aparece | Verifica que hayas subido la carpeta oculta `.github` completa (Paso 3). |
-| La página muestra una versión vieja | Espera 1–2 minutos o recarga con `Ctrl + Shift + R`. |
-
----
-
-## 📦 ¿Qué hace cada carpeta del proyecto?
-
-- `src/` — el código de la aplicación (React + TypeScript).
-- `public/` — archivos extra que se copian al sitio final.
-- `.github/workflows/deploy.yml` — la receta automática: cada push a
-  `main` instala dependencias, compila con `npm run build` y publica
-  la carpeta `dist` en GitHub Pages.
-- `vite.config.js` — configuración del build (incluye el `base`).
-- `dist/` — resultado compilado. **No se sube**: lo genera GitHub.
+| Página en blanco | Pages apunta a la carpeta equivocada. Debe apuntar a **/docs** (o a GitHub Actions si usas ese método). |
+| Error 404 | Estás visitando una URL con un nombre de repo que no existe. Revisa el nombre exacto en la barra del repositorio. |
+| "Still deploying" | Espera 1–2 minutos y recarga con `Ctrl + F5`. |
+| Nada cambia al actualizar | Verifica que hayas hecho Commit de los cambios y que Pages apunte a main + /docs. |
